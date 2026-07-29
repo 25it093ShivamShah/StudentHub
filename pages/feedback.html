@@ -1,1 +1,141 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Student Feedback</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <h1>StudentHub</h1>
+        <p>Your One Stop Platform For Campus Engagement & Events.</p>
+    </header>
+    
+    <nav>
+        <a href="index.html" title="Home">Home</a>
+        <a href="about.html" title="About" target="_blank">About</a>
+        <a href="register.html" title="Register" target="_blank">Register</a>
+        <a href="login.html" title="Login" target="_blank">Login</a>
+        <a href="dashboard.html" title="Dashboard" target="_blank">Dashboard</a>
+        <a href="events.html" title="Events" target="_blank">Events</a>
+        <a href="profile.html" title="Profile" target="_blank">Profile</a>
+        <a href="contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="admin.html" title="Admin" target="_blank">Admin</a>
+        <a href="faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="feedback.html" title="Feedback">Feedback</a>
+    </nav>
+    
+    <hr>
+    
+    <main>
+        <section>
+            <h2>Platform Feedback</h2>
+            <p>Help us improve StudentHub! Share your thoughts regarding user experience, events, or features you'd like to see.</p>
+            
+            <form action="#" method="post">
+                <p>
+                    <label for="student-name">Your Name (Optional):</label><br>
+                    <input type="text" id="student-name" name="student_name" placeholder="e.g., Alex Morgan">
+                </p>
+                <p>
+                    <label for="student-email">Email Address (Optional):</label><br>
+                    <input type="email" id="student-email" name="student_email" placeholder="e.g., alex.m@university.edu">
+                </p>
+                <p>
+                    <label for="feedback-category">Feedback Category:</label><br>
+                    <select id="feedback-category" name="feedback_category">
+                        <option value="ui">Website Usability & Navigation</option>
+                        <option value="events">Event Registration & Content</option>
+                        <option value="feature">Feature Request / Suggestion</option>
+                        <option value="bug">Technical Bug / Issue</option>
+                        <option value="general">General Feedback</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="feedback-rating">Rate your experience:</label><br>
+                    <select id="feedback-rating" name="feedback_rating">
+                        <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ - Good</option>
+                        <option value="3">⭐⭐⭐ - Average</option>
+                        <option value="2">⭐⭐ - Needs Improvement</option>
+                        <option value="1">⭐ - Poor</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Which features do you use most frequently?</label><br>
+                    <input type="checkbox" id="feature-events" name="used_features" value="events">
+                    <label for="feature-events">Event Registration</label><br>
+                    <input type="checkbox" id="feature-notices" name="used_features" value="notices">
+                    <label for="feature-notices">Campus Notices</label><br>
+                    <input type="checkbox" id="feature-dashboard" name="used_features" value="dashboard">
+                    <label for="feature-dashboard">Student Dashboard</label><br>
+                    <input type="checkbox" id="feature-support" name="used_features" value="support">
+                    <label for="feature-support">Support & Helpdesk</label>
+                </p>
+                <p>
+                    <label for="feedback-comments">Your Comments:</label><br>
+                    <textarea id="feedback-comments" id="feedback-comments" rows="4" placeholder="Tell us how we can make StudentHub better for students..."></textarea>
+                </p>
+                <p>
+                    <input type="checkbox" id="allow-publish" name="allow_publish" value="yes">
+                    <label for="allow-publish">Allow StudentHub to display this feedback in testimonial highlights</label>
+                </p>
+                <p>
+                    <button type="submit">Submit Feedback</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Community Satisfaction Highlights -->
+        <section>
+            <h3>What Fellow Students Are Saying</h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Department</th>
+                        <th>Rating</th>
+                        <th>Recent Review Highlights</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sarah L.</td>
+                        <td>Information Technology</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>"Registering for workshops and hackathons takes just two clicks now. Love the updated dashboard!"</td>
+                    </tr>
+                    <tr>
+                        <td>David K.</td>
+                        <td>Mechanical Engineering</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>"The automated event reminders and schedule tracking have kept me organized all semester."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Feedback Guidelines & Response Commitment -->
+        <section>
+            <h3>How We Use Your Feedback</h3>
+            <ul>
+                <li><strong>Continuous Updates:</strong> Suggestions are reviewed weekly by the developer and admin teams to prioritize new platform features.</li>
+                <li><strong>Privacy First:</strong> Submissions can be completely anonymous unless you choose to provide your contact details for follow-up.</li>
+                <li><strong>Bug Escalation:</strong> Technical bug reports submitted here are escalated directly to our IT maintenance team within 24 hours.</li>
+            </ul>
+        </section>
+    </main>
+    
+    <hr>
+    
+    <footer>
+        <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

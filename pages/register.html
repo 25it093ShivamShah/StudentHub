@@ -1,1 +1,116 @@
- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Register</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <h1>StudentHub</h1>
+        <p>Your One Stop Platform For Campus Engagement & Events.</p>
+    </header>
+    
+    <nav>
+        <a href="index.html" title="Home">Home</a>
+        <a href="about.html" title="About" target="_blank">About</a>
+        <a href="register.html" title="Register" target="_blank">Register</a>
+        <a href="login.html" title="Login" target="_blank">Login</a>
+        <a href="dashboard.html" title="Dashboard" target="_blank">Dashboard</a>
+        <a href="events.html" title="Events" target="_blank">Events</a>
+        <a href="profile.html" title="Profile" target="_blank">Profile</a>
+        <a href="contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="admin.html" title="Admin" target="_blank">Admin</a>
+        <a href="faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="feedback.html" title="Feedback">Feedback</a>
+    </nav>
+    
+    <hr>
+    
+    <main>
+        <section>
+            <h2>Student Registration Form</h2>
+            <p>Please fill out the form below to create your StudentHub account and get involved in campus life.</p>
+            
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <p>
+                        <label for="fullname">Full Name:</label><br>
+                        <input type="text" id="fullname" name="fullname" required placeholder="John Doe">
+                    </p>
+                    <p>
+                        <label for="email">Student Email:</label><br>
+                        <input type="email" id="email" name="email" required placeholder="student@university.edu">
+                    </p>
+                    <p>
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password" required>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Academic Details</legend>
+                    <p>
+                        <label for="studentid">Student ID Number:</label><br>
+                        <input type="text" id="studentid" name="studentid" required placeholder="e.g., S12345678">
+                    </p>
+                    <p>
+                        <label for="department">Department / Major:</label><br>
+                        <select id="department" name="department" required>
+                            <option value="">--Select Department--</option>
+                            <option value="cs">Computer Science & Engineering</option>
+                            <option value="it">Information Technology</option>
+                            <option value="ece">Electronics & Communication</option>
+                            <option value="mech">Mechanical Engineering</option>
+                            <option value="business">Business Administration</option>
+                            <option value="arts">Arts & Humanities</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="year">Current Year of Study:</label><br>
+                        <select id="year" name="year" required>
+                            <option value="">--Select Year--</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                            <option value="graduate">Graduate / Post-Graduate</option>
+                        </select>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferences</legend>
+                    <p>
+                        <label>Areas of Interest (Check all that apply):</label><br>
+                        <input type="checkbox" id="coding" name="interests" value="coding">
+                        <label for="coding">Coding & Hackathons</label><br>
+                        
+                        <input type="checkbox" id="sports" name="interests" value="sports">
+                        <label for="sports">Sports & Athletics</label><br>
+                        
+                        <input type="checkbox" id="cultural" name="interests" value="cultural">
+                        <label for="cultural">Cultural Events & Arts</label><br>
+                        
+                        <input type="checkbox" id="workshops" name="interests" value="workshops">
+                        <label for="workshops">Technical Workshops</label>
+                    </p>
+                </fieldset>
+
+                <p style="margin-top: 15px;">
+                    <button type="submit">Register Account</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,1 +1,133 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Student Dashboard</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Studenthub Logo" height="100">
+        <h1>StudentHub</h1>
+        <p>Your One Stop Platform For Campus Engagement & Events.</p>
+    </header>
+    
+    <nav>
+        <a href="index.html" title="Home">Home</a>
+        <a href="about.html" title="About" target="_blank">About</a>
+        <a href="register.html" title="Register" target="_blank">Register</a>
+        <a href="login.html" title="Login" target="_blank">Login</a>
+        <a href="dashboard.html" title="Dashboard" target="_blank">Dashboard</a>
+        <a href="events.html" title="Events" target="_blank">Events</a>
+        <a href="profile.html" title="Profile" target="_blank">Profile</a>
+        <a href="contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="admin.html" title="Admin" target="_blank">Admin</a>
+        <a href="faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="feedback.html" title="Feedback">Feedback</a>
+    </nav>
+    
+    <hr>
+    
+    <main>
+        <!-- Student Profile Quick Card -->
+        <section>
+            <h3>Student Profile Snapshot</h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th>Student ID:</th>
+                    <td>STU-2026-8842</td>
+                    <th>Department:</th>
+                    <td>Computer Science & Engineering</td>
+                </tr>
+                <tr>
+                    <th>Academic Year:</th>
+                    <td>3rd Year (Junior)</td>
+                    <th>Account Status:</th>
+                    <td>Active / Verified</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Welcome Back, Student!</h2>
+            <p>Here is your personalized snapshot of your academic registrations and upcoming activities.</p>
+            
+            <h3>Registered Events</h3>
+            <ul>
+                <li>Web Development Workshop (Next Week)</li>
+                <li>Annual Tech Hackathon (Next Month)</li>
+            </ul>
+        </section>
+
+        <!-- Detailed Event Schedule Table -->
+        <section>
+            <h3>Event Schedule & Status</h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Event Title</th>
+                        <th>Date & Time</th>
+                        <th>Location</th>
+                        <th>Ticket Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Web Development Workshop</td>
+                        <td>August 5, 2026 | 10:00 AM</td>
+                        <td>Lab 4, IT Building</td>
+                        <td>Confirmed</td>
+                        <td><button type="button">Download Pass</button></td>
+                    </tr>
+                    <tr>
+                        <td>Annual Tech Hackathon</td>
+                        <td>August 20, 2026 | 09:00 AM</td>
+                        <td>Main Auditorium</td>
+                        <td>Pending Team Lead</td>
+                        <td><button type="button">Manage Team</button></td>
+                    </tr>
+                    <tr>
+                        <td>AI & ML Seminar</td>
+                        <td>September 2, 2026 | 02:00 PM</td>
+                        <td>Virtual (Zoom)</td>
+                        <td>Waitlisted</td>
+                        <td><button type="button">Cancel Request</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Notifications & Announcements -->
+        <section>
+            <h3>Recent Announcements & Alerts</h3>
+            <ul>
+                <li>
+                    <strong>Workshop Prerequisite Notice:</strong> Please install Node.js and VS Code prior to attending the <em>Web Development Workshop</em>. 
+                    <small>(Posted: July 28, 2026)</small>
+                </li>
+                <li>
+                    <strong>Venue Change:</strong> The <em>Annual Tech Hackathon</em> opening ceremony has been moved to the Main Auditorium. 
+                    <small>(Posted: July 25, 2026)</small>
+                </li>
+            </ul>
+        </section>
+
+        <aside>
+            <h3>Quick Actions</h3>
+            <ul>
+                <li><a href="profile.html">Update Profile</a></li>
+                <li><a href="events.html">Browse New Events</a></li>
+                <li><a href="contact.html">Contact Support</a></li>
+            </ul>
+        </aside>
+    </main>
+    
+    <hr>
+    
+    <footer>
+        <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

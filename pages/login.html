@@ -1,1 +1,100 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Student Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <h1>StudentHub</h1>
+        <p>Your One Stop Platform For Campus Engagement & Events.</p>
+    </header>
+    
+    <nav>
+        <a href="index.html" title="Home">Home</a>
+        <a href="about.html" title="About" target="_blank">About</a>
+        <a href="register.html" title="Register" target="_blank">Register</a>
+        <a href="login.html" title="Login" target="_blank">Login</a>
+        <a href="dashboard.html" title="Dashboard" target="_blank">Dashboard</a>
+        <a href="events.html" title="Events" target="_blank">Events</a>
+        <a href="profile.html" title="Profile" target="_blank">Profile</a>
+        <a href="contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="admin.html" title="Admin" target="_blank">Admin</a>
+        <a href="faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="feedback.html" title="Feedback">Feedback</a>
+    </nav>
+    
+    <hr>
+    
+    <main>
+        <section>
+            <h2>Student Portal Login</h2>
+            <form action="dashboard.html" method="POST">
+                <p>
+                    <label for="login-email">Student Email:</label><br>
+                    <input type="email" id="login-email" name="email" required placeholder="student@university.edu">
+                </p>
+                <p>
+                    <label for="login-password">Password:</label><br>
+                    <input type="password" id="login-password" name="password" required placeholder="••••••••">
+                </p>
+                <p>
+                    <input type="checkbox" id="remember-me" name="remember">
+                    <label for="remember-me">Remember me on this device</label>
+                </p>
+                <p>
+                    <button type="submit">Sign In</button>
+                    <button type="reset">Clear</button>
+                </p>
+                <p>
+                    <small><a href="contact.html">Forgot your password?</a></small>
+                </p>
+                <p><small>Don't have an account? <a href="register.html">Register here</a>.</small></p>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Institutional SSO Alternative Login -->
+        <section>
+            <h3>Single Sign-On (SSO) Access</h3>
+            <p>You can also sign in directly using your university credentials:</p>
+            <p>
+                <button type="button">Sign In with Campus Single Sign-On (SSO)</button>
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Account Security Guidelines -->
+        <section>
+            <h3>Account Security Guidelines</h3>
+            <ul>
+                <li><strong>Official Email Only:</strong> Always sign in using your official university email domain (<code>@university.edu</code>).</li>
+                <li><strong>Protect Your Password:</strong> Never share your login credentials with anyone. StudentHub admins will never ask for your password.</li>
+                <li><strong>Public Devices:</strong> Remember to log out from your <a href="dashboard.html">Dashboard</a> if you are using campus library or lab computers.</li>
+            </ul>
+        </section>
+
+        <!-- Support Assistance -->
+        <section>
+            <h3>Having Trouble Signing In?</h3>
+            <p>If you are experiencing account lockout or verification issues, please review our troubleshooting resources:</p>
+            <ul>
+                <li>Check <a href="faq.html">Frequently Asked Questions</a> for common account issues.</li>
+                <li>Contact the IT Helpdesk via <a href="contact.html">Student Support</a>.</li>
+            </ul>
+        </section>
+    </main>
+    
+    <hr>
+    
+    <footer>
+        <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
