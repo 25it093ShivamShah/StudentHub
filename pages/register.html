@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@
             <h2 style="text-decoration: underline; color:#1a365d ;">Student Registration Form</h2>
             <p>Please fill out the form below to create your StudentHub account and get involved in campus life.</p>
             
-            <form action="#" method="POST">
+            <form id="registrationForm" onsubmit="return false;" novalidate>
                 <fieldset>
                     <legend>Personal Information</legend>
                     <p>
@@ -47,8 +47,25 @@
                         <input type="email" id="email" name="email" required placeholder="student@university.edu">
                     </p>
                     <p>
+                        <label for="mobile">Mobile Number:</label><br>
+                        <input type="tel" id="mobile" name="mobile" required placeholder="9876543210" maxlength="10">
+                    </p>
+                    <p id="gender-group">
+                        <label>Gender:</label><br>
+                        <input type="radio" id="male" name="gender" value="Male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                        <input type="radio" id="other" name="gender" value="Other">
+                        <label for="other">Other</label>
+                    </p>
+                    <p>
                         <label for="password">Password:</label><br>
                         <input type="password" id="password" name="password" required>
+                    </p>
+                    <p>
+                        <label for="confirm_password">Confirm Password:</label><br>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
                     </p>
                 </fieldset>
 
@@ -101,6 +118,14 @@
                     </p>
                 </fieldset>
 
+                <fieldset>
+                    <legend>Agreement</legend>
+                    <p id="terms-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I accept the terms and conditions</label>
+                    </p>
+                </fieldset>
+
                 <p style="margin-top: 15px;">
                     <button type="submit">Register Account</button>
                     <button type="reset">Clear Form</button>
@@ -109,8 +134,11 @@
         </section>
     </main>
     
+    <hr>
+
     <footer>
         <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
     </footer>
+    <script src="/js/script.js" defer></script>
 </body>
 </html>
