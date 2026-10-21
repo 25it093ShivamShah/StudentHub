@@ -256,4 +256,409 @@ document.addEventListener("DOMContentLoaded", () => {
       checkStrength("");
     });
   }
+
+  function fetchData(endpoint) {
+    const rel = window.location.pathname.includes("/pages/") ? `../data/${endpoint}` : `./data/${endpoint}`;
+    return fetch(rel).catch(() => fetch(`/data/${endpoint}`)).then((r) => r.json());
+  }
+
+  const evSearch = document.getElementById("event-search");
+  const evCat = document.getElementById("event-category");
+  if (evSearch && evCat) {
+    let allEvents = [];
+    let curPage = 1;
+    const perPage = 4;
+    let sortMode = "date-asc";
+
+    const filterForm = evSearch.closest("form");
+    if (filterForm) {
+      filterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        curPage = 1;
+        renderEvents();
+      });
+
+      const sortWrap = document.createElement("div");
+      sortWrap.style.cssText = "margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;";
+      sortWrap.innerHTML = `
+        <label for="event-sort"><strong>Sort By:</strong></label>
+        <select id="event-sort" style="padding:6px;border-radius:4px;border:1px solid #cbd5e1;">
+          <option value="date-asc">Date (Earliest First)</option>
+          <option value="date-desc">Date (Latest First)</option>
+          <option value="title-asc">Title (A - Z)</option>
+          <option value="seats-desc">Available Seats (High - Low)</option>
+        </select>
+      `;
+      filterForm.appendChild(sortWrap);
+      const sortSel = document.getElementById("event-sort");
+      sortSel.addEventListener("change", (e) => {
+        sortMode = e.target.value;
+        curPage = 1;
+        renderEvents();
+      });
+    }
+
+    const cardsSection = Array.from(document.querySelectorAll("main section")).find((s) => {
+      const h2 = s.querySelector("h2");
+      return h2 && h2.textContent.includes("Upcoming Campus Events");
+    });
+
+    const tableTbody = document.querySelector("table tbody");
+
+    let pageNav = document.createElement("div");
+    pageNav.className = "events-pagination";
+    pageNav.style.cssText = "display:flex;justify-content:center;gap:10px;align-items:center;margin:20px 0;";
+    if (cardsSection) cardsSection.appendChild(pageNav);
+
+    function renderEvents() {
+      const query = evSearch.value.trim().toLowerCase();
+      const cat = evCat.value;
+
+      let filtered = allEvents
+        .filter((ev) => {
+          const matchCat = cat === "all" || !cat || ev.category.toLowerCase() === cat.toLowerCase();
+          const matchQ =
+            !query ||
+            ev.title.toLowerCase().includes(query) ||
+            ev.description.toLowerCase().includes(query) ||
+            ev.venue.toLowerCase().includes(query) ||
+            ev.speaker.toLowerCase().includes(query);
+          return matchCat && matchQ;
+        })
+        .sort((a, b) => {
+          if (sortMode === "date-asc") return new Date(a.date) - new Date(b.date);
+          if (sortMode === "date-desc") return new Date(b.date) - new Date(a.date);
+          if (sortMode === "title-asc") return a.title.localeCompare(b.title);
+          if (sortMode === "seats-desc") return b.seats - a.seats;
+          return 0;
+        });
+
+      const totalPages = Math.ceil(filtered.length / perPage) || 1;
+      if (curPage > totalPages) curPage = totalPages;
+      const start = (curPage - 1) * perPage;
+      const pageItems = filtered.slice(start, start + perPage);
+
+      if (cardsSection) {
+        const oldArticles = cardsSection.querySelectorAll("article, hr.ev-sep, .ev-empty");
+        oldArticles.forEach((el) => el.remove());
+
+        if (pageItems.length === 0) {
+          const empty = document.createElement("p");
+          empty.className = "ev-empty";
+          empty.textContent = "No campus events matched your criteria.";
+          empty.style.color = "#64748b";
+          cardsSection.insertBefore(empty, pageNav);
+        } else {
+          pageItems.forEach((ev, idx) => {
+            const art = document.createElement("article");
+            art.innerHTML = `
+              <h3>${ev.title}</h3>
+              <p><strong>Date:</strong> ${ev.date} (${ev.time}) | <strong>Location:</strong> ${ev.venue}</p>
+              <p>${ev.description}</p>
+              <p><strong>Speaker / Host:</strong> ${ev.speaker}</p>
+              <p><strong>Available Seats:</strong> ${ev.seats} seats remaining</p>
+              <button type="button" class="reg-btn" style="padding:8px 14px;background:#1a365d;color:#fff;border:none;border-radius:4px;cursor:pointer;">Register for Event</button>
+            `;
+            cardsSection.insertBefore(art, pageNav);
+            if (idx < pageItems.length - 1) {
+              const sep = document.createElement("hr");
+              sep.className = "ev-sep";
+              cardsSection.insertBefore(sep, pageNav);
+            }
+          });
+        }
+
+        pageNav.innerHTML = `
+          <button id="ev-prev" ${curPage === 1 ? "disabled" : ""} style="padding:6px 14px;cursor:${curPage === 1 ? "not-allowed" : "pointer"};">❮ Prev</button>
+          <span>Page <strong>${curPage}</strong> of <strong>${totalPages}</strong> (${filtered.length} total)</span>
+          <button id="ev-next" ${curPage === totalPages ? "disabled" : ""} style="padding:6px 14px;cursor:${curPage === totalPages ? "not-allowed" : "pointer"};">Next ❯</button>
+        `;
+        document.getElementById("ev-prev")?.addEventListener("click", () => {
+          if (curPage > 1) { curPage--; renderEvents(); }
+        });
+        document.getElementById("ev-next")?.addEventListener("click", () => {
+          if (curPage < totalPages) { curPage++; renderEvents(); }
+        });
+      }
+
+      if (tableTbody) {
+        tableTbody.innerHTML = pageItems
+          .map(
+            (ev) => `
+          <tr>
+            <td>${ev.title}</td>
+            <td style="text-transform:capitalize;">${ev.category}</td>
+            <td>${ev.date} (${ev.time})</td>
+            <td>${ev.venue}</td>
+            <td>${ev.fee}</td>
+          </tr>
+        `
+          )
+          .join("");
+      }
+    }
+
+    evSearch.addEventListener("input", () => { curPage = 1; renderEvents(); });
+    evCat.addEventListener("change", () => { curPage = 1; renderEvents(); });
+
+    fetchData("events.json")
+      .then((data) => {
+        allEvents = data;
+        renderEvents();
+      })
+      .catch((e) => console.error(e));
+  }
+
+  const faqSearch = document.getElementById("faq-search");
+  if (faqSearch) {
+    let allFaqs = [];
+    let curFaqPage = 1;
+    const perPageFaq = 5;
+    let selectedCat = "all";
+    let sortModeFaq = "default";
+
+    const faqForm = faqSearch.closest("form");
+    if (faqForm) {
+      faqForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        curFaqPage = 1;
+        renderFaqs();
+      });
+
+      const controlsDiv = document.createElement("div");
+      controlsDiv.style.cssText = "margin-top:10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;";
+      controlsDiv.innerHTML = `
+        <label for="faq-cat"><strong>Category:</strong></label>
+        <select id="faq-cat" style="padding:6px;border-radius:4px;border:1px solid #cbd5e1;">
+          <option value="all">All Topics</option>
+          <option value="events">Events</option>
+          <option value="account">Account & Login</option>
+          <option value="academic">Academic</option>
+          <option value="general">General</option>
+        </select>
+        <label for="faq-sort"><strong>Sort:</strong></label>
+        <select id="faq-sort" style="padding:6px;border-radius:4px;border:1px solid #cbd5e1;">
+          <option value="default">Default Order</option>
+          <option value="asc">Question (A - Z)</option>
+          <option value="desc">Question (Z - A)</option>
+        </select>
+      `;
+      faqForm.appendChild(controlsDiv);
+
+      document.getElementById("faq-cat").addEventListener("change", (e) => {
+        selectedCat = e.target.value;
+        curFaqPage = 1;
+        renderFaqs();
+      });
+      document.getElementById("faq-sort").addEventListener("change", (e) => {
+        sortModeFaq = e.target.value;
+        curFaqPage = 1;
+        renderFaqs();
+      });
+    }
+
+    const faqSection = Array.from(document.querySelectorAll("main section")).find((s) => {
+      const h2 = s.querySelector("h2");
+      return h2 && h2.textContent.includes("Frequently Asked Questions");
+    });
+
+    let faqNav = document.createElement("div");
+    faqNav.style.cssText = "display:flex;justify-content:center;gap:10px;align-items:center;margin:20px 0;";
+    if (faqSection) faqSection.appendChild(faqNav);
+
+    function renderFaqs() {
+      const q = faqSearch.value.trim().toLowerCase();
+      let filtered = allFaqs
+        .filter((f) => {
+          const matchCat = selectedCat === "all" || f.category === selectedCat;
+          const matchQ = !q || f.question.toLowerCase().includes(q) || f.answer.toLowerCase().includes(q);
+          return matchCat && matchQ;
+        })
+        .sort((a, b) => {
+          if (sortModeFaq === "asc") return a.question.localeCompare(b.question);
+          if (sortModeFaq === "desc") return b.question.localeCompare(a.question);
+          return a.id - b.id;
+        });
+
+      const totalPages = Math.ceil(filtered.length / perPageFaq) || 1;
+      if (curFaqPage > totalPages) curFaqPage = totalPages;
+      const start = (curFaqPage - 1) * perPageFaq;
+      const pageItems = filtered.slice(start, start + perPageFaq);
+
+      if (faqSection) {
+        const oldItems = faqSection.querySelectorAll("article, br.faq-br, .faq-empty");
+        oldItems.forEach((el) => el.remove());
+
+        if (pageItems.length === 0) {
+          const empty = document.createElement("p");
+          empty.className = "faq-empty";
+          empty.textContent = "No FAQs found matching your search.";
+          empty.style.color = "#64748b";
+          faqSection.insertBefore(empty, faqNav);
+        } else {
+          pageItems.forEach((f) => {
+            const art = document.createElement("article");
+            art.innerHTML = `<h3>${f.question}</h3><p>${f.answer}</p>`;
+            faqSection.insertBefore(art, faqNav);
+            const br = document.createElement("br");
+            br.className = "faq-br";
+            faqSection.insertBefore(br, faqNav);
+          });
+        }
+
+        faqNav.innerHTML = `
+          <button id="faq-prev" ${curFaqPage === 1 ? "disabled" : ""} style="padding:6px 14px;cursor:${curFaqPage === 1 ? "not-allowed" : "pointer"};">❮ Prev</button>
+          <span>Page <strong>${curFaqPage}</strong> of <strong>${totalPages}</strong> (${filtered.length} FAQs)</span>
+          <button id="faq-next" ${curFaqPage === totalPages ? "disabled" : ""} style="padding:6px 14px;cursor:${curFaqPage === totalPages ? "not-allowed" : "pointer"};">Next ❯</button>
+        `;
+        document.getElementById("faq-prev")?.addEventListener("click", () => {
+          if (curFaqPage > 1) { curFaqPage--; renderFaqs(); }
+        });
+        document.getElementById("faq-next")?.addEventListener("click", () => {
+          if (curFaqPage < totalPages) { curFaqPage++; renderFaqs(); }
+        });
+      }
+    }
+
+    faqSearch.addEventListener("input", () => { curFaqPage = 1; renderFaqs(); });
+
+    fetchData("faqs.json")
+      .then((data) => {
+        allFaqs = data;
+        renderFaqs();
+      })
+      .catch((e) => console.error(e));
+  }
+
+  const adminRegSection = Array.from(document.querySelectorAll("main section")).find((s) => {
+    const h3 = s.querySelector("h3");
+    return h3 && h3.textContent.includes("Pending Student Registrations");
+  });
+
+  if (adminRegSection) {
+    const adminTbody = adminRegSection.querySelector("table tbody");
+    if (adminTbody) {
+      let allStudents = [];
+      let curStuPage = 1;
+      const perPageStu = 5;
+      let stuFilterDept = "all";
+      let stuSearchQuery = "";
+      let stuSort = "date-desc";
+
+      const filterBar = document.createElement("div");
+      filterBar.style.cssText = "margin-bottom:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;";
+      filterBar.innerHTML = `
+        <input type="text" id="stu-search" placeholder="Search student name, ID, email..." style="padding:6px 10px;border:1px solid #cbd5e1;border-radius:4px;min-width:220px;">
+        <select id="stu-dept" style="padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
+          <option value="all">All Departments</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Information Technology">Information Technology</option>
+          <option value="Electrical Engineering">Electrical Engineering</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
+          <option value="Electronics & Communication">Electronics & Communication</option>
+          <option value="Business Administration">Business Administration</option>
+        </select>
+        <select id="stu-sort" style="padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="name-asc">Name (A - Z)</option>
+        </select>
+      `;
+      adminRegSection.querySelector("table").before(filterBar);
+
+      const stuNav = document.createElement("div");
+      stuNav.style.cssText = "display:flex;justify-content:center;gap:10px;align-items:center;margin:15px 0;";
+      adminRegSection.querySelector("table").after(stuNav);
+
+      function renderStudents() {
+        let filtered = allStudents
+          .filter((s) => {
+            const matchDept = stuFilterDept === "all" || s.department === stuFilterDept;
+            const q = stuSearchQuery.toLowerCase();
+            const matchQ =
+              !q ||
+              s.fullName.toLowerCase().includes(q) ||
+              s.id.toLowerCase().includes(q) ||
+              s.email.toLowerCase().includes(q);
+            return matchDept && matchQ;
+          })
+          .sort((a, b) => {
+            if (stuSort === "date-desc") return new Date(b.dateRegistered) - new Date(a.dateRegistered);
+            if (stuSort === "date-asc") return new Date(a.dateRegistered) - new Date(b.dateRegistered);
+            if (stuSort === "name-asc") return a.fullName.localeCompare(b.fullName);
+            return 0;
+          });
+
+        const totalPages = Math.ceil(filtered.length / perPageStu) || 1;
+        if (curStuPage > totalPages) curStuPage = totalPages;
+        const start = (curStuPage - 1) * perPageStu;
+        const pageItems = filtered.slice(start, start + perPageStu);
+
+        adminTbody.innerHTML = pageItems
+          .map(
+            (s) => `
+          <tr>
+            <td>${s.id}</td>
+            <td>${s.fullName}</td>
+            <td>${s.email}</td>
+            <td>${s.department}</td>
+            <td>${s.dateRegistered}</td>
+            <td>
+              <button type="button" class="btn-approve" data-id="${s.id}" style="padding:4px 8px;cursor:pointer;">${s.status === "Approved" ? "Enrolled" : "Approve"}</button>
+              <button type="button" class="btn-reject" data-id="${s.id}" style="padding:4px 8px;cursor:pointer;">Reject</button>
+            </td>
+          </tr>
+        `
+          )
+          .join("");
+
+        stuNav.innerHTML = `
+          <button id="stu-prev" ${curStuPage === 1 ? "disabled" : ""} style="padding:4px 10px;cursor:${curStuPage === 1 ? "not-allowed" : "pointer"};">❮ Prev</button>
+          <span>Page <strong>${curStuPage}</strong> of <strong>${totalPages}</strong> (${filtered.length} students)</span>
+          <button id="stu-next" ${curStuPage === totalPages ? "disabled" : ""} style="padding:4px 10px;cursor:${curStuPage === totalPages ? "not-allowed" : "pointer"};">Next ❯</button>
+        `;
+
+        document.getElementById("stu-prev")?.addEventListener("click", () => {
+          if (curStuPage > 1) { curStuPage--; renderStudents(); }
+        });
+        document.getElementById("stu-next")?.addEventListener("click", () => {
+          if (curStuPage < totalPages) { curStuPage++; renderStudents(); }
+        });
+      }
+
+      document.getElementById("stu-search").addEventListener("input", (e) => {
+        stuSearchQuery = e.target.value.trim();
+        curStuPage = 1;
+        renderStudents();
+      });
+      document.getElementById("stu-dept").addEventListener("change", (e) => {
+        stuFilterDept = e.target.value;
+        curStuPage = 1;
+        renderStudents();
+      });
+      document.getElementById("stu-sort").addEventListener("change", (e) => {
+        stuSort = e.target.value;
+        curStuPage = 1;
+        renderStudents();
+      });
+
+      adminTbody.addEventListener("click", (e) => {
+        const btn = e.target;
+        if (btn.classList.contains("btn-approve")) {
+          const s = allStudents.find((st) => st.id === btn.dataset.id);
+          if (s) { s.status = "Approved"; renderStudents(); }
+        } else if (btn.classList.contains("btn-reject")) {
+          allStudents = allStudents.filter((st) => st.id !== btn.dataset.id);
+          renderStudents();
+        }
+      });
+
+      fetchData("students.json")
+        .then((data) => {
+          allStudents = data;
+          renderStudents();
+        })
+        .catch((e) => console.error(e));
+    }
+  }
 });

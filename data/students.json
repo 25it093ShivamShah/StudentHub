@@ -1,0 +1,162 @@
+[
+  {
+    "id": "STU-1091",
+    "fullName": "Shivam Shah",
+    "email": "25it093@charusat.edu.in",
+    "department": "Information Technology",
+    "year": 2,
+    "mobile": "9876543210",
+    "dateRegistered": "2026-07-25",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1092",
+    "fullName": "Jane Doe",
+    "email": "jane.doe@university.edu",
+    "department": "Computer Science",
+    "year": 3,
+    "mobile": "9876501234",
+    "dateRegistered": "2026-07-28",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1093",
+    "fullName": "John Smith",
+    "email": "john.smith@university.edu",
+    "department": "Electrical Engineering",
+    "year": 1,
+    "mobile": "9823456789",
+    "dateRegistered": "2026-07-29",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1094",
+    "fullName": "Aarav Patel",
+    "email": "aarav.patel@university.edu",
+    "department": "Information Technology",
+    "year": 3,
+    "mobile": "9898123456",
+    "dateRegistered": "2026-07-30",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1095",
+    "fullName": "Diya Joshi",
+    "email": "diya.joshi@university.edu",
+    "department": "Computer Science",
+    "year": 2,
+    "mobile": "9723456780",
+    "dateRegistered": "2026-07-31",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1096",
+    "fullName": "Rohan Mehta",
+    "email": "rohan.mehta@university.edu",
+    "department": "Mechanical Engineering",
+    "year": 4,
+    "mobile": "9638527410",
+    "dateRegistered": "2026-08-01",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1097",
+    "fullName": "Ananya Desai",
+    "email": "ananya.desai@university.edu",
+    "department": "Business Administration",
+    "year": 2,
+    "mobile": "9512345678",
+    "dateRegistered": "2026-08-02",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1098",
+    "fullName": "Vivaan Gandhi",
+    "email": "vivaan.gandhi@university.edu",
+    "department": "Electronics & Communication",
+    "year": 1,
+    "mobile": "9426012345",
+    "dateRegistered": "2026-08-03",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1099",
+    "fullName": "Isha Trivedi",
+    "email": "isha.trivedi@university.edu",
+    "department": "Computer Science",
+    "year": 4,
+    "mobile": "9374012345",
+    "dateRegistered": "2026-08-04",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1100",
+    "fullName": "Karan Parekh",
+    "email": "karan.parekh@university.edu",
+    "department": "Information Technology",
+    "year": 3,
+    "mobile": "9285012345",
+    "dateRegistered": "2026-08-05",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1101",
+    "fullName": "Pooja Vora",
+    "email": "pooja.vora@university.edu",
+    "department": "Mechanical Engineering",
+    "year": 2,
+    "mobile": "9176012345",
+    "dateRegistered": "2026-08-06",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1102",
+    "fullName": "Tanmay Bhatt",
+    "email": "tanmay.bhatt@university.edu",
+    "department": "Electrical Engineering",
+    "year": 1,
+    "mobile": "9067012345",
+    "dateRegistered": "2026-08-07",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1103",
+    "fullName": "Meera Rawal",
+    "email": "meera.rawal@university.edu",
+    "department": "Business Administration",
+    "year": 3,
+    "mobile": "8958012345",
+    "dateRegistered": "2026-08-08",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1104",
+    "fullName": "Siddharth Shukla",
+    "email": "siddharth.s@university.edu",
+    "department": "Computer Science",
+    "year": 4,
+    "mobile": "8849012345",
+    "dateRegistered": "2026-08-09",
+    "status": "Pending"
+  },
+  {
+    "id": "STU-1105",
+    "fullName": "Riya Panchal",
+    "email": "riya.panchal@university.edu",
+    "department": "Information Technology",
+    "year": 2,
+    "mobile": "8730012345",
+    "dateRegistered": "2026-08-10",
+    "status": "Approved"
+  },
+  {
+    "id": "STU-1106",
+    "fullName": "Devansh Rana",
+    "email": "devansh.rana@university.edu",
+    "department": "Electronics & Communication",
+    "year": 3,
+    "mobile": "8621012345",
+    "dateRegistered": "2026-08-11",
+    "status": "Pending"
+  }
+]

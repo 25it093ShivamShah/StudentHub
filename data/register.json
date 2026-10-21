@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "fullName": "Aarav Patel",
+    "email": "aarav.patel@university.edu",
+    "password": "password123",
+    "studentId": "S10101",
+    "department": "cs",
+    "year": 3,
+    "interests": ["coding", "workshops"]
+  },
+  {
+    "id": 2,
+    "fullName": "Diya Shah",
+    "email": "diya.shah@university.edu",
+    "password": "password123",
+    "studentId": "S10102",
+    "department": "it",
+    "year": 2,
+    "interests": ["coding", "cultural"]
+  },
+  {
+    "id": 3,
+    "fullName": "Rohan Mehta",
+    "email": "rohan.mehta@university.edu",
+    "password": "password123",
+    "studentId": "S10103",
+    "department": "mech",
+    "year": 1,
+    "interests": ["sports"]
+  },
+  {
+    "id": 4,
+    "fullName": "Ananya Desai",
+    "email": "ananya.desai@university.edu",
+    "password": "password123",
+    "studentId": "S10104",
+    "department": "business",
+    "year": 4,
+    "interests": ["cultural", "workshops"]
+  },
+  {
+    "id": 5,
+    "fullName": "Vivaan Joshi",
+    "email": "vivaan.joshi@university.edu",
+    "password": "password123",
+    "studentId": "S10105",
+    "department": "ece",
+    "year": 2,
+    "interests": ["coding", "sports", "workshops"]
+  }
+]

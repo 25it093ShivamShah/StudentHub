@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "question": "How do I register for a workshop?",
+    "answer": "Navigate to the Events page, view the workshop details, and click the Register for Event button.",
+    "category": "events"
+  },
+  {
+    "id": 2,
+    "question": "Can I update my student department after registration?",
+    "answer": "Yes, you can modify your academic details anytime by logging in and visiting your Profile page.",
+    "category": "account"
+  },
+  {
+    "id": 3,
+    "question": "What should I do if I forget my account password?",
+    "answer": "Click on Forgot Password on the Login page. Enter your registered email to receive a password reset link.",
+    "category": "account"
+  },
+  {
+    "id": 4,
+    "question": "How long does admin approval take for new student accounts?",
+    "answer": "Student registration verification takes 24 to 48 hours. Once approved, you gain full access to your student dashboard.",
+    "category": "account"
+  },
+  {
+    "id": 5,
+    "question": "Are campus workshops and events free to attend?",
+    "answer": "Most campus workshops, hackathons, and guest lectures are completely free for registered students unless noted.",
+    "category": "events"
+  },
+  {
+    "id": 6,
+    "question": "Can I cancel my event registration if I cannot attend?",
+    "answer": "Yes. Go to your Dashboard, locate the event under Registered Events, and click Cancel Request to free up your seat.",
+    "category": "events"
+  },
+  {
+    "id": 7,
+    "question": "Will I receive a participation certificate after attending workshops?",
+    "answer": "Digital certificates are generated within 3 business days following the event and can be downloaded from your profile.",
+    "category": "academic"
+  },
+  {
+    "id": 8,
+    "question": "How do I submit an event proposal as a club coordinator?",
+    "answer": "Navigate to Contact page, select Event Proposal category, and submit the proposal form for admin evaluation.",
+    "category": "events"
+  },
+  {
+    "id": 9,
+    "question": "What browsers are supported by StudentHub?",
+    "answer": "StudentHub works with modern web browsers including Chrome, Firefox, Edge, Safari, and mobile browsers.",
+    "category": "general"
+  },
+  {
+    "id": 10,
+    "question": "Where can I view academic notices and exam schedules?",
+    "answer": "Exam schedules and notices are posted in the Latest Notices section of the Home page and on the Dashboard.",
+    "category": "academic"
+  },
+  {
+    "id": 11,
+    "question": "How do I contact student support for technical difficulties?",
+    "answer": "You can reach out to IT support via the Contact page or by emailing support@charusat.edu.in.",
+    "category": "general"
+  },
+  {
+    "id": 12,
+    "question": "Can I form inter-department teams for hackathons?",
+    "answer": "Yes, hackathon rules allow cross-department teams of up to 4 students across any study year.",
+    "category": "events"
+  },
+  {
+    "id": 13,
+    "question": "How do I upload or update my profile photo?",
+    "answer": "Visit your Profile page, click Choose File under profile photo, and save changes. Files must be JPG or PNG under 5MB.",
+    "category": "account"
+  },
+  {
+    "id": 14,
+    "question": "Where do I track my submitted feedback and queries?",
+    "answer": "Responses to feedback submissions are sent directly to your registered student email address.",
+    "category": "general"
+  },
+  {
+    "id": 15,
+    "question": "Are alumni permitted to register for campus webinars?",
+    "answer": "Select public webinars are open to alumni. Look for the Open to Alumni badge in the event description.",
+    "category": "events"
+  },
+  {
+    "id": 16,
+    "question": "How do I apply for student club membership?",
+    "answer": "Join club introduction meetings during Orientation Week or submit a membership request through the About page.",
+    "category": "academic"
+  }
+]
