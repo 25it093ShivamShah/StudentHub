@@ -75,16 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const changeBtn = document.getElementById("changeBtn");
-  const welcomeHeading = document.querySelector("main section h2");
-  if (changeBtn && welcomeHeading) {
-    changeBtn.addEventListener("click", () => {
-      welcomeHeading.textContent =
-        welcomeHeading.textContent === "Welcome to StudentHub"
-          ? "Welcome to CHARUSAT StudentHub!"
-          : "Welcome to StudentHub";
-    });
-  }
 
   const regForm = document.getElementById("registrationForm");
   if (regForm) {

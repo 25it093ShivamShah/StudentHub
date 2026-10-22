@@ -35,7 +35,8 @@
             <h2 style="text-decoration: underline; color:#1a365d ;">Student Registration Form</h2>
             <p>Please fill out the form below to create your StudentHub account and get involved in campus life.</p>
             
-            <form id="registrationForm" onsubmit="return false;" novalidate>
+            <form id="registrationForm" novalidate>
+                <div id="reg-feedback" style="margin-bottom:10px;"></div>
                 <fieldset>
                     <legend>Personal Information</legend>
                     <p>
@@ -140,5 +141,32 @@
         <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
     </footer>
     <script src="/js/script.js" defer></script>
+    <script>
+    (function() {
+        const origHandler = document.getElementById('registrationForm');
+        if (!origHandler) return;
+        origHandler.addEventListener('submit', function(e) {
+            if (!e._phpHandled) {
+                e._phpHandled = true;
+                const valid = typeof valAll === 'function' ? valAll() : true;
+                if (!valid) return;
+                const fd = new FormData(this);
+                fetch('../php/process_register.php', { method: 'POST', body: fd })
+                    .then(r => r.json())
+                    .then(d => {
+                        const fb = document.getElementById('reg-feedback');
+                        if (d.success) {
+                            fb.innerHTML = '<span style="color:green;font-weight:bold;">' + d.message + '</span>';
+                        } else {
+                            fb.innerHTML = '<span style="color:red;">' + d.errors.join('<br>') + '</span>';
+                        }
+                    })
+                    .catch(() => {
+                        document.getElementById('reg-feedback').innerHTML = '<span style="color:red;">Server error. Try again.</span>';
+                    });
+            }
+        }, true);
+    })();
+    </script>
 </body>
 </html>

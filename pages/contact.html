@@ -34,19 +34,48 @@
         <section>
             <h2 style="text-decoration: underline; color:#1a365d ;">Contact Student Support</h2>
             <p>Need help with your account or event registration? Send a message to the student administration team.</p>
-            <form>
+            <form id="contactForm" novalidate>
+                <p>
+                    <label for="contact-name">Your Name:</label><br>
+                    <input type="text" id="contact-name" name="name" required placeholder="John Doe">
+                </p>
+                <p>
+                    <label for="contact-email">Your Email:</label><br>
+                    <input type="email" id="contact-email" name="email" required placeholder="student@university.edu">
+                </p>
                 <p>
                     <label for="contact-subject">Subject:</label><br>
-                    <input type="text" id="contact-subject" placeholder="e.g., Issue with workshop registration">
+                    <input type="text" id="contact-subject" name="subject" required placeholder="e.g., Issue with workshop registration">
                 </p>
                 <p>
                     <label for="contact-message">Message:</label><br>
-                    <textarea id="contact-message" rows="5" placeholder="Describe your query here..."></textarea>
+                    <textarea id="contact-message" name="message" rows="5" required placeholder="Describe your query here..."></textarea>
                 </p>
                 <p>
-                    <button type="submit">Send Message</button>
+                    <button type="submit" id="contactSubmitBtn">Send Message</button>
                 </p>
+                <div id="contact-feedback" style="margin-top:10px;"></div>
             </form>
+            <script>
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const fd = new FormData(this);
+                fetch('../php/process_contact.php', { method: 'POST', body: fd })
+                    .then(r => r.json())
+                    .then(d => {
+                        const fb = document.getElementById('contact-feedback');
+                        if (d.success) {
+                            fb.innerHTML = '<span style="color:green;">' + d.message + '</span>';
+                            document.getElementById('contactForm').reset();
+                        } else {
+                            fb.innerHTML = '<span style="color:red;">' + d.errors.join('<br>') + '</span>';
+                        }
+                    })
+                    .catch(() => {
+                        document.getElementById('contact-feedback').innerHTML = '<span style="color:red;">Server error. Try again.</span>';
+                    });
+            });
+            </script>
         </section>
     </main>
     
