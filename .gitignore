@@ -1,1 +1,8 @@
 .vscode/
+uploads/events/*.jpg
+uploads/events/*.jpeg
+uploads/events/*.png
+uploads/events/*.gif
+uploads/events/*.webp
+data/contacts.json
+data/registrations.json

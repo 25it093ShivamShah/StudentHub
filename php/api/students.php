@@ -72,9 +72,9 @@ if ($method === 'POST') {
     if ($chk->num_rows>0) { http_response_code(409); echo json_encode(['success'=>false,'error'=>'Email or Student ID already exists.']); exit; }
     $chk->close();
 
-    $hash=$password_hash=$conn->real_escape_string(password_hash($pw,PASSWORD_DEFAULT));
+    $hash=$conn->real_escape_string(password_hash($pw,PASSWORD_DEFAULT));
     $ins=$conn->prepare('INSERT INTO users (fullname,email,mobile,gender,password,studentid,department,year) VALUES (?,?,?,?,?,?,?,?)');
-    $ins->bind_param('ssssssss',$fn,$em,$mb,$gn,password_hash($pw,PASSWORD_DEFAULT),$sid,$dep,$yr);
+    $ins->bind_param('ssssssss',$fn,$em,$mb,$gn,$hash,$sid,$dep,$yr);
     $ins->execute();
     $newId=$ins->insert_id;
     $ins->close();

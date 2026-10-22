@@ -248,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fetchData(endpoint) {
+    if (endpoint === 'events.json') return fetch('/php/api/events.php').then(r => r.json()).then(d => d.data || []);
     const rel = window.location.pathname.includes("/pages/") ? `../data/${endpoint}` : `./data/${endpoint}`;
     return fetch(rel).catch(() => fetch(`/data/${endpoint}`)).then((r) => r.json());
   }
