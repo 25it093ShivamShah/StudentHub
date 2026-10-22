@@ -5,22 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - AJAX Event &amp; Student Manager</title>
-    <link rel="stylesheet" href="/css/style3.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style3.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
     <nav>
-        <a href="/pages/index.html">Home</a>
-        <a href="/pages/admin/">Admin Dashboard</a>
-        <a href="/pages/admin/students.php">Manage Students</a>
-        <a href="/pages/admin/events.php">Manage Events</a>
-        <a href="/pages/ajax_manager.php">AJAX Manager</a>
-        <a href="/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
+        <a href="/STUDENTHUB/pages/index.html">Home</a>
+        <a href="/STUDENTHUB/pages/admin/">Admin Dashboard</a>
+        <a href="/STUDENTHUB/pages/admin/students.php">Manage Students</a>
+        <a href="/STUDENTHUB/pages/admin/events.php">Manage Events</a>
+        <a href="/STUDENTHUB/pages/ajax_manager.php">AJAX Manager</a>
+        <a href="/STUDENTHUB/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
     </nav>
     <hr>
     <main>
@@ -147,8 +147,8 @@
     <footer><p>&copy; 2026 StudentHub. All Rights Reserved.</p></footer>
 
     <script>
-    const EV_API  = '/php/api/events.php';
-    const STU_API = '/php/api/students.php';
+    const EV_API  = '/STUDENTHUB/php/api/events.php';
+    const STU_API = '/STUDENTHUB/php/api/students.php';
     const fb = document.getElementById('globalFeedback');
 
     function flash(msg, ok=true) {

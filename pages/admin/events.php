@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $upd->bind_param('sssssssissi', $title, $cat, $desc, $date, $time, $venue, $speaker, $seats, $fee, $posterName, $id);
         } else {
             $upd = $conn->prepare('UPDATE events SET title=?,category=?,description=?,date=?,time=?,venue=?,speaker=?,seats=?,fee=? WHERE id=?');
-            $upd->bind_param('sssssssissi', $title, $cat, $desc, $date, $time, $venue, $speaker, $seats, $fee, $id);
+            $upd->bind_param('sssssssisi', $title, $cat, $desc, $date, $time, $venue, $speaker, $seats, $fee, $id);
         }
         $upd->execute();
         $upd->close();
@@ -103,22 +103,22 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Manage Events</title>
-    <link rel="stylesheet" href="/css/style3.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style3.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
     <nav>
-        <a href="/pages/index.html">Home</a>
-        <a href="/pages/admin/">Admin Dashboard</a>
-        <a href="/pages/admin/students.php">Manage Students</a>
-        <a href="/pages/admin/events.php">Manage Events</a>
-        <a href="/pages/dashboard.php">Student View</a>
-        <a href="/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
+        <a href="/STUDENTHUB/pages/index.html">Home</a>
+        <a href="/STUDENTHUB/pages/admin/">Admin Dashboard</a>
+        <a href="/STUDENTHUB/pages/admin/students.php">Manage Students</a>
+        <a href="/STUDENTHUB/pages/admin/events.php">Manage Events</a>
+        <a href="/STUDENTHUB/pages/dashboard.php">Student View</a>
+        <a href="/STUDENTHUB/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
     </nav>
     <hr>
     <main>
@@ -188,7 +188,7 @@ $conn->close();
                     <p>
                         <button type="submit"><?= $editData ? 'Update Event' : 'Add Event' ?></button>
                         <?php if ($editData): ?>
-                        <a href="/pages/admin/events.php"><button type="button">Cancel</button></a>
+                        <a href="/STUDENTHUB/pages/admin/events.php"><button type="button">Cancel</button></a>
                         <?php else: ?>
                         <button type="reset">Clear</button>
                         <?php endif; ?>

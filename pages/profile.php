@@ -48,30 +48,30 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - My Profile</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
     <nav>
-        <a href="/pages/index.html" title="Home">Home</a>
-        <a href="/pages/about.html" title="About" target="_blank">About</a>
-        <a href="/pages/register.html" title="Register" target="_blank">Register</a>
-        <a href="/pages/login.html" title="Login" target="_blank">Login</a>
-        <a href="/pages/dashboard.php" title="Dashboard" target="_blank">Dashboard</a>
-        <a href="/pages/events.html" title="Events" target="_blank">Events</a>
-        <a href="/pages/profile.php" title="Profile">Profile</a>
-        <a href="/pages/contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="/STUDENTHUB/pages/index.html" title="Home">Home</a>
+        <a href="/STUDENTHUB/pages/about.html" title="About" target="_blank">About</a>
+        <a href="/STUDENTHUB/pages/register.html" title="Register" target="_blank">Register</a>
+        <a href="/STUDENTHUB/pages/login.html" title="Login" target="_blank">Login</a>
+        <a href="/STUDENTHUB/pages/dashboard.php" title="Dashboard" target="_blank">Dashboard</a>
+        <a href="/STUDENTHUB/pages/events.html" title="Events" target="_blank">Events</a>
+        <a href="/STUDENTHUB/pages/profile.php" title="Profile">Profile</a>
+        <a href="/STUDENTHUB/pages/contact.html" title="Contact" target="_blank">Contact</a>
         <?php if ($_SESSION['user_role'] === 'admin'): ?>
-        <a href="/pages/admin/" title="Admin" target="_blank">Admin</a>
+        <a href="/STUDENTHUB/pages/admin/" title="Admin" target="_blank">Admin</a>
         <?php endif; ?>
-        <a href="/pages/faq.html" title="FAQ" target="_blank">FAQ</a>
-        <a href="/pages/feedback.html" title="Feedback">Feedback</a>
-        <a href="/php/logout.php">Logout</a>
+        <a href="/STUDENTHUB/pages/faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="/STUDENTHUB/pages/feedback.html" title="Feedback">Feedback</a>
+        <a href="/STUDENTHUB/php/logout.php">Logout</a>
     </nav>
     <hr>
     <main>

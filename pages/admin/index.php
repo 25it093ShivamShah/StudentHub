@@ -45,12 +45,12 @@ $menu = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/style3.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style3.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
@@ -58,7 +58,7 @@ $menu = [
         <?php foreach ($menu as $item): ?>
         <a href="<?= $item['href'] ?>"><?= $item['icon'] ?> <?= $item['label'] ?></a>
         <?php endforeach; ?>
-        <a href="/php/logout.php">🚪 Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
+        <a href="/STUDENTHUB/php/logout.php">🚪 Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
     </nav>
     <hr>
     <main>
@@ -161,7 +161,7 @@ $menu = [
                     <?php endif; ?>
                 </tbody>
             </table>
-            <p><a href="/pages/admin/students.php">View All Students &rarr;</a></p>
+            <p><a href="/STUDENTHUB/pages/admin/students.php">View All Students &rarr;</a></p>
         </section>
 
         <section>
@@ -187,7 +187,7 @@ $menu = [
                     <?php endif; ?>
                 </tbody>
             </table>
-            <p><a href="/pages/admin/events.php">Manage All Events &rarr;</a></p>
+            <p><a href="/STUDENTHUB/pages/admin/events.php">Manage All Events &rarr;</a></p>
         </section>
 
         <section>

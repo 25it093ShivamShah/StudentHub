@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: /pages/login.html');
+header('Location: /STUDENTHUB/pages/login.html');
 exit;

@@ -248,9 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fetchData(endpoint) {
-    if (endpoint === 'events.json') return fetch('/php/api/events.php').then(r => r.json()).then(d => d.data || []);
+    if (endpoint === 'events.json') return fetch('/STUDENTHUB/php/api/events.php').then(r => r.json()).then(d => d.data || []);
     const rel = window.location.pathname.includes("/pages/") ? `../data/${endpoint}` : `./data/${endpoint}`;
-    return fetch(rel).catch(() => fetch(`/data/${endpoint}`)).then((r) => r.json());
+    return fetch(rel).catch(() => fetch(`/STUDENTHUB/data/${endpoint}`)).then((r) => r.json());
   }
 
   const evSearch = document.getElementById("event-search");

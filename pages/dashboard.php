@@ -28,30 +28,30 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Student Dashboard</title>
-    <link rel="stylesheet" href="/css/style5.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style5.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
     <nav>
-        <a href="/pages/index.html" title="Home">Home</a>
-        <a href="/pages/about.html" title="About" target="_blank">About</a>
-        <a href="/pages/register.html" title="Register" target="_blank">Register</a>
-        <a href="/pages/login.html" title="Login" target="_blank">Login</a>
-        <a href="/pages/dashboard.php" title="Dashboard">Dashboard</a>
-        <a href="/pages/events.html" title="Events" target="_blank">Events</a>
-        <a href="/pages/profile.php" title="Profile" target="_blank">Profile</a>
-        <a href="/pages/contact.html" title="Contact" target="_blank">Contact</a>
+        <a href="/STUDENTHUB/pages/index.html" title="Home">Home</a>
+        <a href="/STUDENTHUB/pages/about.html" title="About" target="_blank">About</a>
+        <a href="/STUDENTHUB/pages/register.html" title="Register" target="_blank">Register</a>
+        <a href="/STUDENTHUB/pages/login.html" title="Login" target="_blank">Login</a>
+        <a href="/STUDENTHUB/pages/dashboard.php" title="Dashboard">Dashboard</a>
+        <a href="/STUDENTHUB/pages/events.html" title="Events" target="_blank">Events</a>
+        <a href="/STUDENTHUB/pages/profile.php" title="Profile" target="_blank">Profile</a>
+        <a href="/STUDENTHUB/pages/contact.html" title="Contact" target="_blank">Contact</a>
         <?php if ($_SESSION['user_role'] === 'admin'): ?>
-        <a href="/pages/admin/" title="Admin" target="_blank">Admin</a>
+        <a href="/STUDENTHUB/pages/admin/" title="Admin" target="_blank">Admin</a>
         <?php endif; ?>
-        <a href="/pages/faq.html" title="FAQ" target="_blank">FAQ</a>
-        <a href="/pages/feedback.html" title="Feedback">Feedback</a>
-        <a href="/php/logout.php" title="Logout">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
+        <a href="/STUDENTHUB/pages/faq.html" title="FAQ" target="_blank">FAQ</a>
+        <a href="/STUDENTHUB/pages/feedback.html" title="Feedback">Feedback</a>
+        <a href="/STUDENTHUB/php/logout.php" title="Logout">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
     </nav>
     <hr>
     <main>
@@ -82,7 +82,7 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
             <p>Here is your personalized snapshot of your academic registrations and upcoming activities.</p>
             <h3 style="text-decoration: underline; color:#1a365d ;">Registered Events</h3>
             <?php if (empty($regEvents)): ?>
-            <p>You have not registered for any events yet. <a href="/pages/events.html">Browse Events &rarr;</a></p>
+            <p>You have not registered for any events yet. <a href="/STUDENTHUB/pages/events.html">Browse Events &rarr;</a></p>
             <?php else: ?>
             <ul>
                 <?php foreach ($regEvents as $e): ?>
@@ -123,10 +123,10 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
         <aside>
             <h3 style="text-decoration: underline; color:#1a365d ;">Quick Actions</h3>
             <ul>
-                <li><a href="/pages/profile.php">Update Profile</a></li>
-                <li><a href="/pages/events.html">Browse New Events</a></li>
-                <li><a href="/pages/contact.html">Contact Support</a></li>
-                <li><a href="/php/logout.php">Logout</a></li>
+                <li><a href="/STUDENTHUB/pages/profile.php">Update Profile</a></li>
+                <li><a href="/STUDENTHUB/pages/events.html">Browse New Events</a></li>
+                <li><a href="/STUDENTHUB/pages/contact.html">Contact Support</a></li>
+                <li><a href="/STUDENTHUB/php/logout.php">Logout</a></li>
             </ul>
         </aside>
     </main>

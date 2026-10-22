@@ -109,22 +109,22 @@ $yrMap   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gra
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Manage Students</title>
-    <link rel="stylesheet" href="/css/style3.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/STUDENTHUB/css/style3.css">
+    <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
     <header>
-        <img src="/images/logo.png" alt="Studenthub Logo" height="100">
+        <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
     </header>
     <nav>
-        <a href="/pages/index.html">Home</a>
-        <a href="/pages/admin/">Admin Dashboard</a>
-        <a href="/pages/admin/students.php">Manage Students</a>
-        <a href="/pages/admin/events.php">Manage Events</a>
-        <a href="/pages/dashboard.php">Student View</a>
-        <a href="/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
+        <a href="/STUDENTHUB/pages/index.html">Home</a>
+        <a href="/STUDENTHUB/pages/admin/">Admin Dashboard</a>
+        <a href="/STUDENTHUB/pages/admin/students.php">Manage Students</a>
+        <a href="/STUDENTHUB/pages/admin/events.php">Manage Events</a>
+        <a href="/STUDENTHUB/pages/dashboard.php">Student View</a>
+        <a href="/STUDENTHUB/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a>
     </nav>
     <hr>
     <main>
@@ -193,7 +193,7 @@ $yrMap   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gra
                     <p>
                         <button type="submit"><?= $editData ? 'Update Student' : 'Add Student' ?></button>
                         <?php if ($editData): ?>
-                        <a href="/pages/admin/students.php"><button type="button">Cancel</button></a>
+                        <a href="/STUDENTHUB/pages/admin/students.php"><button type="button">Cancel</button></a>
                         <?php else: ?>
                         <button type="reset">Clear</button>
                         <?php endif; ?>
@@ -219,7 +219,7 @@ $yrMap   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gra
                     <?php endforeach; ?>
                 </select>
                 <button type="submit">Filter</button>
-                <a href="/pages/admin/students.php"><button type="button">Reset</button></a>
+                <a href="/STUDENTHUB/pages/admin/students.php"><button type="button">Reset</button></a>
             </form>
 
             <table border="1" cellpadding="8" cellspacing="0">

@@ -32,5 +32,5 @@ $_SESSION['user_email']    = $row['email'];
 $_SESSION['user_role']     = $row['role'];
 $_SESSION['last_activity'] = time();
 
-$redirect = ($row['role'] === 'admin') ? '/pages/admin/' : '/pages/dashboard.php';
+$redirect = ($row['role'] === 'admin') ? '/STUDENTHUB/pages/admin/' : '/STUDENTHUB/pages/dashboard.php';
 echo json_encode(['success' => true, 'redirect' => $redirect]);
