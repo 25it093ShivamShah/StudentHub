@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/json');
-require __DIR__ . '/db.php';
 
 $name    = trim(strip_tags($_POST['name'] ?? ''));
 $email   = trim(filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL));
@@ -31,6 +30,5 @@ $records[] = [
     'timestamp' => date('Y-m-d H:i:s'),
 ];
 file_put_contents($file, json_encode($records, JSON_PRETTY_PRINT));
-$conn->close();
 
 echo json_encode(['success' => true, 'message' => 'Message sent successfully!']);

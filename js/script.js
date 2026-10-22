@@ -224,19 +224,22 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const valid = valName() & valEmail() & valMobile() & valGender() & valPass() & valConf() & valCourse() & valYear() & valTerms();
       if (valid) {
-        const users = JSON.parse(localStorage.getItem("studentHub_users") || "[]");
-        users.push({
-          fullName: fn.value.trim(),
-          email: em.value.trim().toLowerCase(),
-          mobile: mb.value.trim(),
-          gender: document.querySelector('input[name="gender"]:checked').value,
-          department: dp.value,
-          year: yr.value
-        });
-        localStorage.setItem("studentHub_users", JSON.stringify(users));
-        alert("Registration successful!");
-        regForm.reset();
-        checkStrength("");
+        const fb = document.getElementById('reg-feedback');
+        if (fb) fb.innerHTML = '<span style="color:#555;">Submitting&hellip;</span>';
+        const fd = new FormData(regForm);
+        fetch('/STUDENTHUB/php/process_register.php', { method: 'POST', body: fd })
+          .then(r => r.json())
+          .then(d => {
+            if (!fb) return;
+            if (d.success) {
+              fb.innerHTML = '<span style="color:green;font-weight:bold;">' + d.message + '</span>';
+              regForm.reset();
+              checkStrength('');
+            } else {
+              fb.innerHTML = '<span style="color:red;">' + (d.errors || [d.error || 'Registration failed.']).join('<br>') + '</span>';
+            }
+          })
+          .catch(() => { if (fb) fb.innerHTML = '<span style="color:red;">Server error. Is XAMPP running?</span>'; });
       }
     });
 
