@@ -225,21 +225,39 @@ document.addEventListener("DOMContentLoaded", () => {
       const valid = valName() & valEmail() & valMobile() & valGender() & valPass() & valConf() & valCourse() & valYear() & valTerms();
       if (valid) {
         const fb = document.getElementById('reg-feedback');
+        const submitBtn = regForm.querySelector('button[type="submit"]');
         if (fb) fb.innerHTML = '<span style="color:#555;">Submitting&hellip;</span>';
+        if (submitBtn) submitBtn.disabled = true;
         const fd = new FormData(regForm);
         fetch('/STUDENTHUB/php/process_register.php', { method: 'POST', body: fd })
           .then(r => r.json())
           .then(d => {
             if (!fb) return;
             if (d.success) {
-              fb.innerHTML = '<span style="color:green;font-weight:bold;">' + d.message + '</span>';
+              fb.innerHTML = '<span style="color:green;font-weight:bold;">' + d.message + ' Redirecting to login in <span id="reg-countdown">3</span>s...</span>';
               regForm.reset();
               checkStrength('');
+              // Auto-redirect to login
+              let secs = 3;
+              const countEl = document.getElementById('reg-countdown');
+              const timer = setInterval(() => {
+                secs--;
+                if (countEl) countEl.textContent = secs;
+                if (secs <= 0) {
+                  clearInterval(timer);
+                  window.location.href = d.redirect || '/STUDENTHUB/pages/login.html';
+                }
+              }, 1000);
             } else {
-              fb.innerHTML = '<span style="color:red;">' + (d.errors || [d.error || 'Registration failed.']).join('<br>') + '</span>';
+              const errs = d.errors || [d.error || 'Registration failed.'];
+              fb.innerHTML = '<span style="color:red;">&#10006; ' + errs.join('<br>&#10006; ') + '</span>';
+              if (submitBtn) submitBtn.disabled = false;
             }
           })
-          .catch(() => { if (fb) fb.innerHTML = '<span style="color:red;">Server error. Is XAMPP running?</span>'; });
+          .catch(() => {
+            if (fb) fb.innerHTML = '<span style="color:red;">&#10006; Server error. Is XAMPP running?</span>';
+            if (submitBtn) submitBtn.disabled = false;
+          });
       }
     });
 

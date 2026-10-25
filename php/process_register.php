@@ -47,4 +47,4 @@ $ins->execute();
 $ins->close();
 $conn->close();
 
-echo json_encode(['success' => true, 'message' => 'Registration successful! You can now <a href="login.html">login</a>.']);
+echo json_encode(['success' => true, 'message' => 'Registration successful! You can now <a href="/STUDENTHUB/pages/login.html">login here</a>.', 'redirect' => '/STUDENTHUB/pages/login.html']);

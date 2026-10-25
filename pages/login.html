@@ -35,6 +35,7 @@
             <h2 style="text-decoration: underline; color:#1a365d ;">Student Portal Login</h2>
             <form id="loginForm" novalidate>
                 <div id="login-feedback" style="margin-bottom:10px;"></div>
+                <div id="timeout-msg" style="display:none;background:#fff3cd;border:1px solid #ffc107;color:#856404;padding:8px 12px;border-radius:4px;margin-bottom:12px;">&#9888; Your session has expired. Please sign in again.</div>
                 <p>
                     <label for="login-email">Student Email:</label><br>
                     <input type="email" id="login-email" name="email" required placeholder="student@university.edu">
@@ -93,22 +94,56 @@
         <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
     </footer>
     <script>
+    // Show session-expired banner if redirected with ?timeout=1
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('timeout') === '1') {
+            const msg = document.getElementById('timeout-msg');
+            if (msg) msg.style.display = 'block';
+        }
+    })();
+
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const fb = document.getElementById('login-feedback');
+        const emailEl = document.getElementById('login-email');
+        const passEl  = document.getElementById('login-password');
+        const submitBtn = this.querySelector('button[type="submit"]');
         fb.innerHTML = '';
+
+        // Client-side validation
+        const email = emailEl.value.trim();
+        const pass  = passEl.value;
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            fb.innerHTML = '<span style="color:red;">&#10006; Please enter a valid email address.</span>';
+            emailEl.focus();
+            return;
+        }
+        if (!pass) {
+            fb.innerHTML = '<span style="color:red;">&#10006; Password is required.</span>';
+            passEl.focus();
+            return;
+        }
+
+        if (submitBtn) submitBtn.disabled = true;
+        fb.innerHTML = '<span style="color:#555;">Signing in&hellip;</span>';
+
         const fd = new FormData(this);
         fetch('/STUDENTHUB/php/login.php', { method: 'POST', body: fd })
             .then(r => r.json())
             .then(d => {
                 if (d.success) {
-                    fb.innerHTML = '<span style="color:green;">Login successful! Redirecting...</span>';
+                    fb.innerHTML = '<span style="color:green;">&#10003; Login successful! Redirecting...</span>';
                     window.location.href = d.redirect;
                 } else {
-                    fb.innerHTML = '<span style="color:red;">' + (d.error || 'Login failed.') + '</span>';
+                    fb.innerHTML = '<span style="color:red;">&#10006; ' + (d.error || 'Login failed.') + '</span>';
+                    if (submitBtn) submitBtn.disabled = false;
                 }
             })
-            .catch(() => { fb.innerHTML = '<span style="color:red;">Server error. Is XAMPP running?</span>'; });
+            .catch(() => {
+                fb.innerHTML = '<span style="color:red;">&#10006; Server error. Is XAMPP running?</span>';
+                if (submitBtn) submitBtn.disabled = false;
+            });
     });
     </script>
 </body>
