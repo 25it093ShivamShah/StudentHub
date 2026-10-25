@@ -363,13 +363,15 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           pageItems.forEach((ev, idx) => {
             const art = document.createElement("article");
+            art.dataset.eventId = ev.id;
             art.innerHTML = `
               <h3>${ev.title}</h3>
               <p><strong>Date:</strong> ${ev.date} (${ev.time}) | <strong>Location:</strong> ${ev.venue}</p>
               <p>${ev.description}</p>
               <p><strong>Speaker / Host:</strong> ${ev.speaker}</p>
-              <p><strong>Available Seats:</strong> ${ev.seats} seats remaining</p>
-              <button type="button" class="reg-btn" style="padding:8px 14px;background:#1a365d;color:#fff;border:none;border-radius:4px;cursor:pointer;">Register for Event</button>
+              <p><strong>Available Seats:</strong> <span class="seat-count">${ev.seats}</span> seats remaining</p>
+              <button type="button" class="reg-btn" data-event-id="${ev.id}" data-event-title="${ev.title.replace(/"/g,'&quot;')}" style="padding:8px 14px;background:#1a365d;color:#fff;border:none;border-radius:4px;cursor:pointer;">Register for Event</button>
+              <span class="ev-reg-msg" style="margin-left:10px;font-size:13px;"></span>
             `;
             cardsSection.insertBefore(art, pageNav);
             if (idx < pageItems.length - 1) {
@@ -378,6 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
               cardsSection.insertBefore(sep, pageNav);
             }
           });
+
         }
 
         pageNav.innerHTML = `
@@ -412,6 +415,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
     evSearch.addEventListener("input", () => { curPage = 1; renderEvents(); });
     evCat.addEventListener("change", () => { curPage = 1; renderEvents(); });
+
+    // Delegated click handler for all "Register for Event" buttons
+    document.querySelector("main").addEventListener("click", (e) => {
+      const btn = e.target.closest(".reg-btn");
+      if (!btn) return;
+      const eventId    = btn.dataset.eventId;
+      const eventTitle = btn.dataset.eventTitle || 'this event';
+      const msgEl      = btn.nextElementSibling;
+      if (!eventId) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Registering...';
+      if (msgEl) msgEl.innerHTML = '';
+
+      const fd = new FormData();
+      fd.append('event_id', eventId);
+
+      fetch('/STUDENTHUB/php/api/register_event.php', { method: 'POST', body: fd })
+        .then(r => r.json())
+        .then(d => {
+          if (d.success) {
+            btn.textContent = '✓ Registered';
+            btn.style.background = '#10b981';
+            btn.disabled = true;
+            if (msgEl) msgEl.innerHTML = `<span style="color:green;">${d.message}</span>`;
+            // Decrement displayed seat count
+            const article = btn.closest('article');
+            if (article) {
+              const seatEl = article.querySelector('.seat-count');
+              if (seatEl) {
+                const cur = parseInt(seatEl.textContent, 10);
+                seatEl.textContent = Math.max(0, cur - 1);
+              }
+            }
+          } else if (d.login_required) {
+            if (msgEl) msgEl.innerHTML = '<span style="color:#e67e22;">⚠ Please <a href="/STUDENTHUB/pages/login.html">login</a> to register.</span>';
+            btn.textContent = 'Register for Event';
+            btn.disabled = false;
+          } else {
+            if (msgEl) msgEl.innerHTML = `<span style="color:red;">✖ ${d.error}</span>`;
+            btn.textContent = 'Register for Event';
+            btn.disabled = false;
+          }
+        })
+        .catch(() => {
+          if (msgEl) msgEl.innerHTML = '<span style="color:red;">✖ Server error.</span>';
+          btn.textContent = 'Register for Event';
+          btn.disabled = false;
+        });
+    });
+
 
     fetchData("events.json")
       .then((data) => {
