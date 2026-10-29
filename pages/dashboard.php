@@ -25,6 +25,7 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>if(localStorage.getItem("theme")==="dark")document.documentElement.style.cssText="background:#0f172a";</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Student Dashboard</title>
@@ -33,6 +34,7 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
 </head>
 <body>
     <header>
+    <script>if(localStorage.getItem("theme")==="dark")document.documentElement.style.cssText="background:#0f172a";</script>
         <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
         <h1>StudentHub</h1>
         <p>Your One Stop Platform For Campus Engagement &amp; Events.</p>
@@ -137,5 +139,6 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
     <footer>
         <p>&copy; 2026 StudentHub. All Rights Reserved.</p>
     </footer>
+    <script src="/STUDENTHUB/js/darkmode.js"></script>
 </body>
 </html>

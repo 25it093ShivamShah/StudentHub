@@ -1,4 +1,4 @@
-body {
+﻿body {
   margin: 0;
   background-color: #f4f6f9;
   font-family: -apple-system, sans-serif;
@@ -43,18 +43,15 @@ header p {
 }
 
 nav {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  width: 100%;
-  box-sizing: border-box;
-  gap: 8px;
-  padding: 12px 20px;
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 12px 20px;
+  transition: background-color 0.3s;
+  box-sizing: border-box;
 }
 
 nav a {
@@ -241,3 +238,174 @@ footer p {
     grid-template-columns: 1fr;
   }
 }
+/* -- Dark Mode --------------------------------------- */
+body.dark-mode {
+  background-color: #0f172a;
+  color: #cbd5e1;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #020617;
+}
+body.dark-mode nav {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+body.dark-mode nav a,
+body.dark-mode #navLinks a {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+body.dark-mode nav a:hover,
+body.dark-mode #navLinks a:hover {
+  background-color: #475569;
+  color: #ffffff;
+}
+body.dark-mode #hamburger {
+  color: #cbd5e1;
+}
+body.dark-mode section,
+body.dark-mode article,
+body.dark-mode aside {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+body.dark-mode section h2,
+body.dark-mode section h3,
+body.dark-mode article h3,
+body.dark-mode aside h3 {
+  color: #93c5fd;
+}
+body.dark-mode section p,
+body.dark-mode article p,
+body.dark-mode aside p,
+body.dark-mode section li,
+body.dark-mode aside li,
+body.dark-mode td {
+  color: #cbd5e1;
+}
+body.dark-mode section a,
+body.dark-mode aside a {
+  color: #60a5fa;
+}
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td {
+  border-color: #334155;
+}
+body.dark-mode th {
+  background-color: #0f172a;
+  color: #93c5fd;
+}
+body.dark-mode tr:nth-child(even) {
+  background-color: #172032;
+}
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-color: #475569;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #64748b;
+}
+body.dark-mode label {
+  color: #93c5fd;
+}
+body.dark-mode button {
+  background-color: #2b6cb0;
+  color: #ffffff;
+}
+body.dark-mode button:hover {
+  background-color: #3182ce;
+}
+body.dark-mode button[type="reset"] {
+  background-color: #475569;
+}
+body.dark-mode button[type="reset"]:hover {
+  background-color: #64748b;
+}
+body.dark-mode button:disabled {
+  background-color: #334155;
+  color: #64748b;
+}
+body.dark-mode fieldset {
+  border-color: #334155;
+}
+body.dark-mode legend {
+  color: #93c5fd;
+}
+body.dark-mode code {
+  background-color: #0f172a;
+  color: #7dd3fc;
+}
+body.dark-mode .faq-question {
+  background-color: #334155;
+  color: #93c5fd;
+}
+body.dark-mode .faq-answer {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+body.dark-mode .modal-content {
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+
+/* ── Nav layout fix: hamburger + #navLinks grid ─────── */
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #1a365d;
+  align-self: flex-start;
+  padding: 4px 8px;
+}
+
+#navLinks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+#navLinks a {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  text-decoration: none;
+  padding: 8px 6px;
+  border-radius: 4px;
+  background-color: lightblue;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+#navLinks a:hover {
+  color: #2b6cb0;
+  background-color: rgb(130, 186, 205);
+}
+
+@media (max-width: 768px) {
+  #hamburger { display: block; }
+  #navLinks { display: none; grid-template-columns: 1fr; margin-top: 8px; }
+  #navLinks.show { display: grid; }
+  main { grid-template-columns: 1fr; }
+}
+
+body.dark-mode #hamburger { color: #cbd5e1; }
