@@ -1,53 +1,27 @@
 /**
- * StudentHub – Global Dark Mode Manager
- * Persists theme in localStorage across ALL pages.
+ * StudentHub – Dark Mode Manager
+ * - Applies saved theme on ALL pages (persists via localStorage)
+ * - Shows the toggle button ONLY on index.html (home page)
  */
 (function () {
-  // Apply theme immediately to prevent flash
+  // Apply saved theme immediately to prevent flash of unstyled content
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Ensure body class is correct after DOM ready
+    // Re-apply after DOM ready (ensures body class is set)
     if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-mode');
     }
 
-    // Inject theme toggle button into nav if not already present
-    const nav = document.querySelector('nav');
-    const navLinks = document.getElementById('navLinks');
-    const existingBtn = document.getElementById('themeBtn') || document.getElementById('theamBtn');
+    // ── Only wire/inject the toggle button on the Home (index) page ──
+    const isIndexPage = /\/(index\.html)?$/.test(window.location.pathname.replace(/\?.*$/, ''));
 
-    if (nav && !existingBtn) {
-      const btn = document.createElement('button');
-      btn.id = 'themeBtn';
-      btn.type = 'button';
-      btn.textContent = document.body.classList.contains('dark-mode') ? '☀ Light Mode' : '🌙 Dark Mode';
-      btn.style.cssText = [
-        'background:#1a365d', 'color:#fff', 'border:none',
-        'border-radius:6px', 'padding:7px 14px', 'cursor:pointer',
-        'font-size:13px', 'font-weight:600', 'white-space:nowrap',
-        'transition:background-color 0.2s ease', 'margin-left:4px'
-      ].join(';');
+    if (!isIndexPage) return; // Other pages: just apply theme, no button
 
-      btn.addEventListener('mouseenter', function () {
-        this.style.backgroundColor = '#2b6cb0';
-      });
-      btn.addEventListener('mouseleave', function () {
-        this.style.backgroundColor = document.body.classList.contains('dark-mode') ? '#3182ce' : '#1a365d';
-      });
-
-      // Insert at end of navLinks div, or directly into nav
-      if (navLinks) {
-        navLinks.appendChild(btn);
-      } else {
-        nav.appendChild(btn);
-      }
-    }
-
-    // Wire up click for injected OR pre-existing button
-    const themeBtn = document.getElementById('themeBtn') || document.getElementById('theamBtn');
+    // Wire up the existing #theamBtn on index.html
+    const themeBtn = document.getElementById('theamBtn') || document.getElementById('themeBtn');
     if (themeBtn) {
       // Sync label on load
       themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀ Light Mode' : '🌙 Dark Mode';
@@ -55,7 +29,6 @@
       themeBtn.addEventListener('click', function () {
         const isDark = document.body.classList.toggle('dark-mode');
         this.textContent = isDark ? '☀ Light Mode' : '🌙 Dark Mode';
-        this.style.backgroundColor = isDark ? '#3182ce' : '#1a365d';
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
     }

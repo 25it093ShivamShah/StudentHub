@@ -352,13 +352,7 @@ body.dark-mode .modal-content {
   color: #cbd5e1;
 }
 
-/* ── Nav layout fix: hamburger + #navLinks grid ─────── */
-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
+/* ── Nav & #navLinks layout (hamburger support) ───── */
 #hamburger {
   display: none;
   background: none;
@@ -366,7 +360,6 @@ nav {
   font-size: 24px;
   cursor: pointer;
   color: #1a365d;
-  align-self: flex-start;
   padding: 4px 8px;
 }
 
@@ -378,6 +371,7 @@ nav {
 }
 
 #navLinks a {
+  display: block;
   text-align: center;
   font-size: 14px;
   font-weight: 500;
@@ -398,10 +392,22 @@ nav {
 }
 
 @media (max-width: 768px) {
-  #hamburger { display: block; }
-  #navLinks { display: none; grid-template-columns: 1fr; margin-top: 8px; }
-  #navLinks.show { display: grid; }
   main { grid-template-columns: 1fr; }
+  #hamburger { display: block; }
+  #navLinks {
+    display: none;
+    grid-template-columns: 1fr;
+    margin-top: 8px;
+  }
+  #navLinks.show { display: grid; }
 }
 
 body.dark-mode #hamburger { color: #cbd5e1; }
+body.dark-mode #navLinks a {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+body.dark-mode #navLinks a:hover {
+  background-color: #475569;
+  color: #ffffff;
+}
