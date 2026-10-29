@@ -1,4 +1,4 @@
-#notification {
+﻿#notification {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,7 +102,7 @@ nav {
 }
 
 #hamburger {
-  display: none;
+  display: none !important;
   background: none;
   border: none;
   font-size: 24px;

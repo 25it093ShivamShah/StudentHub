@@ -281,7 +281,7 @@ body.dark-mode textarea::placeholder {
 body.dark-mode label {
   color: #93c5fd;
 }
-body.dark-mode button {
+body.dark-mode button:not(#hamburger) {
   background-color: #2b6cb0;
   color: #ffffff;
 }
@@ -323,9 +323,10 @@ body.dark-mode .modal-content {
 
 /* ── Nav & #navLinks layout (hamburger support) ───── */
 #hamburger {
-  display: none;
-  background: none;
-  border: none;
+  display: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   font-size: 24px;
   cursor: pointer;
   color: #1a365d;
@@ -333,7 +334,7 @@ body.dark-mode .modal-content {
 }
 
 #navLinks {
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 8px;
   width: 100%;
@@ -362,16 +363,20 @@ body.dark-mode .modal-content {
 
 @media (max-width: 768px) {
   main { grid-template-columns: 1fr; }
-  #hamburger { display: block; }
+  #hamburger { display: block !important; }
   #navLinks {
-    display: none;
+    display: none !important;
     grid-template-columns: 1fr;
     margin-top: 8px;
   }
-  #navLinks.show { display: grid; }
+  #navLinks.show { display: grid !important; }
 }
 
-body.dark-mode #hamburger { color: #cbd5e1; }
+body.dark-mode #hamburger {
+  color: #cbd5e1;
+  background: transparent !important;
+  box-shadow: none !important;
+}
 body.dark-mode #navLinks a {
   background-color: #334155;
   color: #e2e8f0;
