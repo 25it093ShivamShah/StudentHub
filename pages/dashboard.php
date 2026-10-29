@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/../php/auth.php';
 require_once __DIR__ . '/../php/db.php';
 
@@ -33,6 +33,7 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
     <link rel="icon" type="image/png" href="/STUDENTHUB/images/favicon.png">
 </head>
 <body>
+    <script>if(localStorage.getItem('theme')=='dark')document.body.classList.add('dark-mode');</script>
     <header>
     <script>if(localStorage.getItem("theme")==="dark")document.documentElement.style.cssText="background:#0f172a";</script>
         <img src="/STUDENTHUB/images/logo.png" alt="Studenthub Logo" height="100">
