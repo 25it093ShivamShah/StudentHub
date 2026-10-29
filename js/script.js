@@ -1,18 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-  const themeBtn = document.getElementById("theamBtn") || document.getElementById("themeBtn");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    if (themeBtn) themeBtn.textContent = "Light Mode";
-  }
-
-  if (themeBtn) {
-    themeBtn.addEventListener("click", () => {
-      const isDark = document.body.classList.toggle("dark-mode");
-      themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-  }
+  // Dark mode is handled by darkmode.js — no duplicate listener here
 
   const notif = document.getElementById("notification");
   const closeNotif = document.getElementById("closeBtn");

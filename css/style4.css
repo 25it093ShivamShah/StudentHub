@@ -122,30 +122,47 @@ label {
   color: #1a365d;
 }
 
-input[type="text"], textarea {
+input[type="text"],
+input[type="email"],
+textarea {
   width: 100%;
-  padding: 8px 10px;
-  margin-top: 5px;
+  padding: 10px 12px;
+  margin-top: 6px;
   border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 14px;
+  color: #334155;
+  background: #f8fafc;
+  transition: border-color 0.2s ease;
 }
 
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #2b6cb0;
+  background: #ffffff;
+}
+
+textarea { resize: vertical; min-height: 120px; }
+
 button {
+  display: inline-block;
   background-color: #1a365d;
   color: #ffffff;
   border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
+  padding: 10px 22px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 13px;
-  transition: background-color 0.2s ease;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 4px;
 }
 
 button:hover {
   background-color: #2b6cb0;
+  transform: translateY(-1px);
 }
 
 footer {

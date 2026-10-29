@@ -63,19 +63,19 @@ $yr   = ['1'=>'1st Year','2'=>'2nd Year','3'=>'3rd Year','4'=>'4th Year','gradua
     <nav>
         <button id="hamburger">&#9776;</button>
         <div id="navLinks">
-            <a href="/STUDENTHUB/pages/index.html" title="Home">Home</a>
+            <a href="/STUDENTHUB/pages/index.html" title="Home" target="_blank">Home</a>
             <a href="/STUDENTHUB/pages/about.html" title="About" target="_blank">About</a>
             <a href="/STUDENTHUB/pages/register.html" title="Register" target="_blank">Register</a>
             <a href="/STUDENTHUB/pages/login.html" title="Login" target="_blank">Login</a>
             <a href="/STUDENTHUB/pages/dashboard.php" title="Dashboard" target="_blank">Dashboard</a>
             <a href="/STUDENTHUB/pages/events.html" title="Events" target="_blank">Events</a>
-            <a href="/STUDENTHUB/pages/profile.php" title="Profile">Profile</a>
+            <a href="/STUDENTHUB/pages/profile.php" title="Profile" target="_blank">Profile</a>
             <a href="/STUDENTHUB/pages/contact.html" title="Contact" target="_blank">Contact</a>
             <?php if ($_SESSION['user_role'] === 'admin'): ?>
             <a href="/STUDENTHUB/pages/admin/" title="Admin" target="_blank">Admin</a>
             <?php endif; ?>
             <a href="/STUDENTHUB/pages/faq.html" title="FAQ" target="_blank">FAQ</a>
-            <a href="/STUDENTHUB/pages/feedback.html" title="Feedback">Feedback</a>
+            <a href="/STUDENTHUB/pages/feedback.html" title="Feedback" target="_blank">Feedback</a>
             <a href="/STUDENTHUB/php/logout.php">Logout</a>
         </div>
     </nav>
