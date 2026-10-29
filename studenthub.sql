@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS registrations (
 INSERT IGNORE INTO users (fullname, email, mobile, gender, password, studentid, department, year, interests, role)
 VALUES (
     'Admin User', 'admin@studenthub.edu', '9000000001', 'Male',
-    '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uXkKUiiq',
+    '$2y$10$ctrcxcDmhYv5jU63PI.AVuJeFzgbI3YDkR8GBCLtAs2RGsa66Q/IC',
     'ADMIN001', 'cs', '1', 'coding', 'admin'
 );
 
